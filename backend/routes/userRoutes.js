@@ -3,6 +3,6 @@ import * as serv from '../controllers/userController.js';
 
 export const router = express.Router();
 
-router.post("/save-url", serv.generateQr);
+router.post("/gen-url", serv.generateQr);
 
-router.get("/get-url", serv.getUrl)
+router.post("/verify-access/:formId", serv.checkAccess)

@@ -2,9 +2,11 @@ import express from "express";
 import bodyParser from "body-parser";
 import { router } from "./routes/userRoutes.js";
 import * as dotenv from "dotenv";
+import { connectDB } from "./config/db.js";
 dotenv.config();
 
 const app = express();
+connectDB();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
