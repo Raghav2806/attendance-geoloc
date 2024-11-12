@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 import { router } from "./routes/userRoutes.js";
 import * as dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
@@ -10,6 +11,7 @@ connectDB();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors())
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
