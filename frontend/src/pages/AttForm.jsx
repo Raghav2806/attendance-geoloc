@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Form } from "react-router-dom";
 
-const backendURL = import.meta.env.VITE_BACKEND_URL;
-
 export default function AttForm() {
   const {formId} = useParams();
   const [accessGranted, setAccessGranted] = useState(false);
@@ -14,7 +12,7 @@ export default function AttForm() {
           const { latitude, longitude } = position.coords;
 
           const response = await fetch(
-            `${backendURL}/verify-access/${formId}`,
+            `https://attendance-geoloc.vercel.app/verify-access/${formId}`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

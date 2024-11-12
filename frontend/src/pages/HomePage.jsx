@@ -3,8 +3,6 @@ import { QRCodeSVG } from "qrcode.react";
 
 import classes from "./Home.module.css";
 
-const backendURL = import.meta.env.VITE_BACKEND_URL;
-
 export default function HomePage() {
   const [url, setUrl] = useState(null);
   const [latitude, setLatitude] = useState(null);
@@ -17,7 +15,7 @@ export default function HomePage() {
     })
   }, [])
   async function handleGenerateQr() {
-        const response = await fetch(`${backendURL}/gen-url`, {
+        const response = await fetch(`https://attendance-geoloc.vercel.app/gen-url`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
