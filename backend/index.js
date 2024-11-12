@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors(
   {
-    origin: ["https://attendance-pink.vercel.app/"],
+    origin: ["https://attendance-pink.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true
   }
