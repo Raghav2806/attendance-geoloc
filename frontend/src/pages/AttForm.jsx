@@ -12,7 +12,7 @@ export default function AttForm() {
           const { latitude, longitude } = position.coords;
 
           const response = await fetch(
-            `https://attendance-geoloc.vercel.app/verify-access/${formId}`,
+            `https://attendance-geoloc.onrender.com/verify-access/${formId}`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

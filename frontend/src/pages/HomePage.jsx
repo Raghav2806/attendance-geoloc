@@ -15,7 +15,7 @@ export default function HomePage() {
     })
   }, [])
   async function handleGenerateQr() {
-        const response = await fetch(`https://attendance-geoloc.vercel.app/gen-url`, {
+        const response = await fetch(`https://attendance-geoloc.onrender.com/gen-url`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
