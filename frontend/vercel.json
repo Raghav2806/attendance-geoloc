@@ -1,0 +1,13 @@
+{
+    "rewrites": [
+      {
+        "source": "/gen-url",
+        "destination": "https://attendance-geoloc.onrender.com/gen-url"
+      },
+      {
+        "source": "/verify-access/:formId",
+        "destination": "https://attendance-geoloc.onrender.com/verify-access/:formId"
+      }
+    ]
+  }
+  
