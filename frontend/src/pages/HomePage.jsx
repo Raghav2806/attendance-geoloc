@@ -3,29 +3,45 @@ import { QRCodeSVG } from "qrcode.react";
 
 import classes from "./Home.module.css";
 
+export function getCurrentLocation() {
+  return new Promise((resolve, reject) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          resolve({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        (error) => {
+          reject("Location access denied or unavailable");
+        },
+        { enableHighAccuracy: true }
+      );
+    } else {
+      reject("Geolocation is not supported by this browser.");
+    }
+  });
+}
+
+
 export default function HomePage() {
   const [url, setUrl] = useState(null);
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(async (position) => {
-      setLatitude(position.coords.latitude);
-      setLongitude(position.coords.longitude);
-    })
-  }, [])
   async function handleGenerateQr() {
-        const response = await fetch(`https://attendance-geoloc.onrender.com/gen-url`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ latitude, longitude }),
-        });
+    const location = await getCurrentLocation();
+    if (location) {
+      const response = await fetch(`https://attendance-geoloc.onrender.com/gen-url`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(location),
+      });
 
-        const data = await response.json();
-        setUrl(data.url);
-      
+      const data = await response.json();
+      setUrl(data.url);
+    }
   }
   return (
     <>

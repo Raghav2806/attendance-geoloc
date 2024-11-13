@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Form } from "react-router-dom";
+import { getCurrentLocation } from "./HomePage";
 
 export default function AttForm() {
   const {formId} = useParams();
@@ -7,23 +8,24 @@ export default function AttForm() {
 
   useEffect(() => {
     async function checkLocationAccess() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(async (position) => {
-          const { latitude, longitude } = position.coords;
+      try{
+          const location = await getCurrentLocation();
 
           const response = await fetch(
             `https://attendance-geoloc.onrender.com/verify-access/${formId}`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ latitude, longitude }),
+              body: JSON.stringify(location),
             }
           );
 
           const data = await response.json();
           setAccessGranted(data.accessGranted);
-        });
-      }
+        } catch (err) {
+          setAccessGranted(false);
+        }
+        
     }
     checkLocationAccess();
   }, [formId]);
