@@ -7,7 +7,8 @@
       {
         "source": "/verify-access/:formId",
         "destination": "https://attendance-geoloc.onrender.com/verify-access/:formId"
-      }
+      },
+      { "source": "/form/:formId", "destination": "/" }
     ]
   }
   
