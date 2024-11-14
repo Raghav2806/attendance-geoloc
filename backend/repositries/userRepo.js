@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import formModal from '../modals/formModal.js';
-import requestModal from '../modals/requestsModal.jsx';
+import requestModal from '../modals/requestsModal.js';
 
 export async function generateUniqueFormId() {
     return uuidv4();
