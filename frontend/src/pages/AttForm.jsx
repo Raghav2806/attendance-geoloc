@@ -10,7 +10,7 @@ export default function AttForm() {
     async function checkLocationAccess() {
       try{
           const location = await getCurrentLocation();
-
+          
           const response = await fetch(
             `https://attendance-geoloc.onrender.com/verify-access/${formId}`,
             {
