@@ -12,6 +12,7 @@ export default function AttForm() {
   useEffect(() => {
     async function checkLocationAccess() {
       try {
+        setChecking(true);
         const location = await getCurrentLocation();
 
         const response = await fetch(
@@ -24,14 +25,16 @@ export default function AttForm() {
         );
 
         const data = await response.json();
+
+        setChecking(false);
         setAccessGranted(data.accessGranted);
       } catch (err) {
         setAccessGranted(false);
+
+        setChecking(false);
       }
     }
-    setChecking(true);
     checkLocationAccess();
-    setChecking(false);
   }, [formId]);
 
   return (
