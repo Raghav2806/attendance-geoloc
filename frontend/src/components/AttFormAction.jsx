@@ -1,5 +1,3 @@
-import { redirect } from "react-router-dom";
-
 export async function action ({request, params}) {
     const { formId } = params;
     const data = await request.formData();
@@ -21,6 +19,6 @@ export async function action ({request, params}) {
     if (!response.ok) {
       throw json({ message: "Could not save event." }, { status: 500 });
     }
-  
-    return redirect("/success");
+
+    window.location.href = "/success";
   }
