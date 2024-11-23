@@ -14,7 +14,7 @@
       },
       { "source": "/form/:formId", "destination": "/" },
       {
-        "source": "/(.*)",
+        "source": "/success",
         "destination": "/"
       }
     ]
