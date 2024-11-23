@@ -8,6 +8,10 @@
         "source": "/verify-access/:formId",
         "destination": "https://attendance-geoloc.onrender.com/verify-access/:formId"
       },
+      {
+        "source": "/mark-attendance",
+        "destination": "https://attendance-geoloc.onrender.com/mark-attendance"
+      },
       { "source": "/form/:formId", "destination": "/" },
       {
         "source": "/(.*)",
