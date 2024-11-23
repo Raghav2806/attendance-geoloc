@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Form } from "react-router-dom";
 import { getCurrentLocation } from "./HomePage";
-
+import Backdrop from "../components/Backdrop";
 import classes from "./AttForm.module.css";
 
 export default function AttForm() {
@@ -39,6 +39,7 @@ export default function AttForm() {
 
   return (
     <div className={classes.page}>
+    <Backdrop/>
       {checking ? (
         <p className={classes.message}>Checking your location...</p>
       ) : accessGranted ? (

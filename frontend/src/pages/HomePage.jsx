@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Backdrop from "../components/Backdrop";
 import { QRCodeSVG } from "qrcode.react";
 
 import classes from "./Home.module.css";
@@ -57,6 +58,7 @@ export default function HomePage() {
   return (
     <>
       <div className={classes.page}>
+      <Backdrop/>
         <header className={classes.header}>
           <h1>
             QR Code <span className={classes.headerspan}>Generator</span>

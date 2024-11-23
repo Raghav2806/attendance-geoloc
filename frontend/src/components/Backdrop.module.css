@@ -1,0 +1,63 @@
+.backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* Ensure it stays behind all other elements */
+    background: linear-gradient(135deg, #121212, #2b2b2b); /* Subtle dark gradient */
+  }
+  
+  /* Shared styles for all icons */
+  .icon {
+    position: absolute;
+    opacity: 0.1; /* Base opacity for subtle effect */
+    animation: float 15s infinite ease-in-out alternate;
+    will-change: transform; /* Optimization for animation */
+  }
+  
+  /* Variations for depth effect */
+  .icon.small {
+    font-size: 2rem; /* Small size for distant icons */
+    opacity: 0.05; /* Less opaque */
+  }
+  
+  .icon.medium {
+    font-size: 4rem; /* Medium size for mid-depth icons */
+    opacity: 0.08;
+  }
+  
+  .icon.large {
+    font-size: 7rem; /* Large size for closer icons */
+    opacity: 0.1; /* More visible */
+  }
+  
+  /* Float animation */
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Rotation animation for subtle dynamic effect */
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Adding some rotation to specific icons */
+  .icon.rotate {
+    animation: rotate 20s infinite linear, float 15s infinite ease-in-out alternate;
+  }
+  
