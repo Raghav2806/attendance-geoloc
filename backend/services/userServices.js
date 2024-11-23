@@ -1,4 +1,4 @@
-import { generateUniqueFormId, saveFormLocation, getForm, checkDistance } from "../repositries/userRepo.js";
+import { generateUniqueFormId, saveFormLocation, getForm, checkDistance, addStudent } from "../repositries/userRepo.js";
 import * as dotenv from "dotenv";
 dotenv.config();
 
