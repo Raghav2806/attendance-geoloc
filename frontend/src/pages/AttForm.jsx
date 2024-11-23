@@ -38,30 +38,34 @@ export default function AttForm() {
   }, [formId]);
 
   return (
-    <div>
+    <div className={classes.page}>
       {checking ? (
-        <p>Checking your location...</p>
+        <p className={classes.message}>Checking your location...</p>
       ) : accessGranted ? (
-        <Form method="post">
-          <div className="form-floating mb-3">
-            <input
-              type="text"
-              className="form-control"
-              id="floatingInput"
-              placeholder="BITS ID"
-              name="bits_id"
-              required
-            />
-            <label for="floatingInput">BITS ID</label>
-          </div>
-          <div className={classes.centre}>
-            <button type="submit" className="btn btn-light">
-              Submit
-            </button>
-          </div>
-        </Form>
+        <div className={classes.container}>
+          <h1>Attendance Form</h1>
+          <p>Please fill out the form below to mark your attendance.</p>
+          <Form method="post" className={classes.form}>
+            <div className="form-floating mb-3">
+              <input
+                type="text"
+                className="form-control"
+                id="floatingInput"
+                placeholder="BITS ID"
+                name="bits_id"
+                required
+              />
+              <label for="floatingInput">BITS ID</label>
+            </div>
+            <div className={classes.centre}>
+              <button type="submit" className={classes.submitBtn}>
+                Submit
+              </button>
+            </div>
+          </Form>
+        </div>
       ) : (
-        <p>
+        <p className={classes.message}>
           Access Denied: You must be in the class to gain access. Please provide
           access to location if you are in the class.
         </p>
