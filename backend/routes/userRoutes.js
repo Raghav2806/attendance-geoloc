@@ -5,4 +5,6 @@ export const router = express.Router();
 
 router.post("/gen-url", serv.generateQr);
 
-router.post("/verify-access/:formId", serv.checkAccess)
+router.post("/verify-access/:formId", serv.checkAccess);
+
+router.post("/mark-attendance", serv.attendanceMark)

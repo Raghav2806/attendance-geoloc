@@ -10,7 +10,7 @@ export async function saveFormLocation(formId, latitude, longitude) {
     return await formModal.create({formId:formId, latitude:latitude, longitude:longitude});
 }
 
-export async function getFormLocation(formId) {
+export async function getForm(formId) {
     return await formModal.findOne({formId:formId});
 }
 
@@ -34,3 +34,11 @@ export async function checkDistance(lat1, lon1, center, radius) {
     await saveDistance(lat1, lon1, center, distance);
     return distance <= radius;
   }
+
+  export async function addStudent(bitsId, formId) {
+    const form = await getForm(formId);
+    if(form) {
+        form.students.push({bitsId});
+    }
+    await form.save();
+}
