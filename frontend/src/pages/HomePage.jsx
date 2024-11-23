@@ -58,10 +58,11 @@ export default function HomePage() {
   return (
     <>
       <div className={classes.page}>
-      <Backdrop/>
+        <Backdrop />
         <header className={classes.header}>
           <h1>
-            QR Code <span className={classes.headerspan}>Generator</span>
+            <span className={classes.headerspan}>Smart Attendance</span> with QR
+            Generator
           </h1>
           <p>Generate a unique QR code based on your location</p>
         </header>
