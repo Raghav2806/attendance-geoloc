@@ -141,4 +141,5 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+attendance-system-441914-bb926c230f5d.json
 # End of https://www.toptal.com/developers/gitignore/api/node
