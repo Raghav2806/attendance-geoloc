@@ -10,6 +10,7 @@ export default function AttForm() {
   const { formId } = useParams();
   const [accessGranted, setAccessGranted] = useState(false);
   const [checking, setChecking] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   useEffect(() => {
     async function checkLocationAccess() {
@@ -40,6 +41,7 @@ export default function AttForm() {
   }, [formId]);
 
   async function handleSuccess(response) {
+    setIsLoggingIn(true);
     const { email, hd } = jwtDecode(response.credential);
     const requestBody = {
       email,
@@ -59,6 +61,7 @@ export default function AttForm() {
       );
 
       if (response.ok) {
+        setIsLoggingIn(false);
         window.location.href = "/success"; // Redirect on success
       } else {
         console.error("Error marking attendance.");
@@ -79,9 +82,11 @@ export default function AttForm() {
         <div className={classes.container}>
           <h1>Attendance Form</h1>
           <p>Please login using your BITS email to mark your attendance.</p>
-          <GoogleOAuthProvider clientId="622786280217-2ucnf2o0o3q0oiir4tr0n4ug23q85ap4.apps.googleusercontent.com">
+          {isLoggingIn ? (
+            <p className={classes.message}>Logging in, please wait...</p>
+          ) :(<GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
             <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
-          </GoogleOAuthProvider>
+          </GoogleOAuthProvider>)}
         </div>
       ) : (
         <p className={classes.message}>
