@@ -11,6 +11,7 @@ export default function AttForm() {
   const [accessGranted, setAccessGranted] = useState(false);
   const [checking, setChecking] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
   useEffect(() => {
     async function checkLocationAccess() {
@@ -84,7 +85,7 @@ export default function AttForm() {
           <p>Please login using your BITS email to mark your attendance.</p>
           {isLoggingIn ? (
             <p className={classes.message}>Logging in, please wait...</p>
-          ) :(<GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+          ) :(<GoogleOAuthProvider clientId={googleClientId}>
             <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
           </GoogleOAuthProvider>)}
         </div>
