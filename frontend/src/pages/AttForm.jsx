@@ -10,6 +10,7 @@ export default function AttForm() {
   const { formId } = useParams();
   const [accessGranted, setAccessGranted] = useState(false);
   const [checking, setChecking] = useState(false);
+  const [mailChecker, setMailChecker] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
@@ -67,6 +68,8 @@ export default function AttForm() {
       } else {
         console.error("Error marking attendance.");
       }
+    } else {
+      setMailChecker(true);
     }
     } catch (err) {
       console.log(err);
@@ -93,6 +96,7 @@ export default function AttForm() {
           ) :(<GoogleOAuthProvider clientId={googleClientId}>
             <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
           </GoogleOAuthProvider>)}
+          {mailChecker && (<p className={classes.error}>Please use your BITS Mail ID to mark attendance</p>)}
         </div>
       ) : (
         <p className={classes.message}>

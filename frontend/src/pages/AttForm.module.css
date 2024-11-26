@@ -69,3 +69,19 @@
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
   }
   
+  .error {
+    color: #ff4d4f; /* Soft red for error messages */
+    background-color: #fff1f0; /* Light red background for subtle contrast */
+    border: 1px solid #ffa39e; /* Border to make the error message stand out */
+    padding: 10px; /* Adds spacing inside the box */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    font-size: 14px; /* Slightly smaller text to keep it subtle */
+    font-weight: bold; /* Bold text for emphasis */
+    text-align: center; /* Center-align the text */
+    margin-top: 15px; /* Add space above the error message */
+    width: fit-content; /* Keeps the message box compact */
+    max-width: 90%; /* Avoids overflow in narrow screens */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+  }
+  
