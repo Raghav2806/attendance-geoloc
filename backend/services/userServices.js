@@ -22,7 +22,7 @@ export async function accessChecker (body, params) {
 }
 
 export async function attendanceMarker(body) {
-  const {bitsId, formId} = body;
-  await addStudent(bitsId, formId);
+  const {email, formId} = body.requestBody;
+  await addStudent(email, formId);
   return true;
 }
