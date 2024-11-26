@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
+import moment from "moment-timezone"
 import exportToGoogleSheet from "../utils/googleSheets.js";
 
 const formSchema = new mongoose.Schema({
   formId: String,
-  date: { type: Date, default: new Date().toISOString() },
+  date: { 
+    type: Date, 
+    default: () => moment().tz("Asia/Kolkata").toDate() 
+  },
   longitude: Number,
   latitude: Number,
   students: [
