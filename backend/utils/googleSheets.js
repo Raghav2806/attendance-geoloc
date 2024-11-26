@@ -5,7 +5,7 @@ dotenv.config();
 
 // Google Sheets Authentication
 const auth = new google.auth.GoogleAuth({
-    keyFile: process.env.GOOGLE_KEY_FILE, // Replace with the path to your JSON key file
+    credentials: JSON.parse(Buffer.from(process.env.GOOGLE_SERVICE_ACCOUNT_KEY, "base64").toString("utf-8")),
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
