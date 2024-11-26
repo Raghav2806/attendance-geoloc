@@ -43,6 +43,7 @@ export default function AttForm() {
 
   async function handleSuccess(response) {
     setIsLoggingIn(true);
+    try {
     const { email, hd } = jwtDecode(response.credential);
     const requestBody = {
       email,
@@ -62,11 +63,15 @@ export default function AttForm() {
       );
 
       if (response.ok) {
-        setIsLoggingIn(false);
         window.location.href = "/success"; // Redirect on success
       } else {
         console.error("Error marking attendance.");
       }
+    }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoggingIn(false);
     }
   }
 
