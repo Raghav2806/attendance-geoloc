@@ -1,12 +1,15 @@
 import mongoose from "mongoose";
-import moment from "moment-timezone"
 import exportToGoogleSheet from "../utils/googleSheets.js";
 
 const formSchema = new mongoose.Schema({
   formId: String,
   date: { 
     type: Date, 
-    default: () => moment().tz("Asia/Kolkata").toDate() 
+    default: () => {
+      const now = new Date();
+      const istOffset = 5.5 * 60 * 60 * 1000; // IST is UTC+5:30
+      return new Date(now.getTime() + istOffset);
+    }
   },
   longitude: Number,
   latitude: Number,
