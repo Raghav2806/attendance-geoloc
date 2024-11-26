@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, Form } from "react-router-dom";
 import { getCurrentLocation } from "./HomePage";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 import Backdrop from "../components/Backdrop";
 import classes from "./AttForm.module.css";
 
@@ -37,33 +39,49 @@ export default function AttForm() {
     checkLocationAccess();
   }, [formId]);
 
+  async function handleSuccess(response) {
+    const { email, hd } = jwtDecode(response.credential);
+    const requestBody = {
+      email,
+      formId,
+    };
+
+    if (hd == "pilani.bits-pilani.ac.in") {
+      const response = await fetch(
+        `https://attendance-geoloc.onrender.com/mark-attendance`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ requestBody }),
+        }
+      );
+
+      if (response.ok) {
+        window.location.href = "/success"; // Redirect on success
+      } else {
+        console.error("Error marking attendance.");
+      }
+    }
+  }
+
+  function handleError() {
+    console.log("Error");
+  }
+
   return (
     <div className={classes.page}>
-    <Backdrop/>
+      <Backdrop />
       {checking ? (
         <p className={classes.message}>Checking your location...</p>
       ) : accessGranted ? (
         <div className={classes.container}>
           <h1>Attendance Form</h1>
-          <p>Please fill out the form below to mark your attendance.</p>
-          <Form method="post" className={classes.form}>
-            <div className="form-floating mb-3">
-              <input
-                type="text"
-                className="form-control"
-                id="floatingInput"
-                placeholder="BITS ID"
-                name="bits_id"
-                required
-              />
-              <label for="floatingInput">BITS ID</label>
-            </div>
-            <div className={classes.centre}>
-              <button type="submit" className={classes.submitBtn}>
-                Submit
-              </button>
-            </div>
-          </Form>
+          <p>Please login using your BITS email to mark your attendance.</p>
+          <GoogleOAuthProvider clientId="622786280217-2ucnf2o0o3q0oiir4tr0n4ug23q85ap4.apps.googleusercontent.com">
+            <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
+          </GoogleOAuthProvider>
         </div>
       ) : (
         <p className={classes.message}>
