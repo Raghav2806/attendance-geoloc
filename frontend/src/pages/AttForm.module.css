@@ -70,18 +70,28 @@
   }
   
   .error {
-    color: #ff4d4f; /* Soft red for error messages */
-    background-color: #fff1f0; /* Light red background for subtle contrast */
-    border: 1px solid #ffa39e; /* Border to make the error message stand out */
-    padding: 10px; /* Adds spacing inside the box */
-    border-radius: 5px; /* Rounded corners for a modern look */
-    font-size: 14px; /* Slightly smaller text to keep it subtle */
-    font-weight: bold; /* Bold text for emphasis */
+    color: #ff5e5e; /* Bright red for error messages */
+    background-color: #464646; /* Match container background */
+    border: 1px solid #ff5e5e; /* Add a red border for emphasis */
+    padding: 10px 20px; /* Adds spacing inside the box */
+    border-radius: 10px; /* Rounded corners for modern look */
+    font-size: 0.9rem; /* Slightly smaller text for subtlety */
     text-align: center; /* Center-align the text */
     margin-top: 15px; /* Add space above the error message */
-    width: fit-content; /* Keeps the message box compact */
     max-width: 90%; /* Avoids overflow in narrow screens */
     margin-left: auto; /* Center horizontally */
     margin-right: auto; /* Center horizontally */
-  }
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a soft shadow */
+}
   
+.googleLogin {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0; /* Add some spacing above and below the button */
+}
+
+.googleLogin button {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 5px; /* Add slight rounding for consistency */
+}

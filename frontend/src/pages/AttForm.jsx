@@ -93,9 +93,9 @@ export default function AttForm() {
           <p>Please login using your BITS email to mark your attendance.</p>
           {isLoggingIn ? (
             <p className={classes.message}>Logging in, please wait...</p>
-          ) :(<GoogleOAuthProvider clientId={googleClientId}>
+          ) :(<div className={classes.googleLogin}><GoogleOAuthProvider clientId={googleClientId}>
             <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
-          </GoogleOAuthProvider>)}
+          </GoogleOAuthProvider></div>)}
           {mailChecker && (<p className={classes.error}>Please use your BITS Mail ID to mark attendance</p>)}
         </div>
       ) : (
